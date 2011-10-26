@@ -13,7 +13,7 @@ import json
 import os
 import os.path
 
-from threading import Thread, Lock
+from multiprocessing import Process, Lock
 
 from wok import logger
 from wok.scheduler.factory import create_job_scheduler
@@ -155,9 +155,9 @@ def synchronized(lock):
 		return new_function
 	return wrap
 
-class RunThread(Thread):
+class RunThread(Process):
 	def __init__(self, wok):
-		Thread.__init__(self, name = "wok-engine-run")
+		Process.__init__(self, name = "wok-engine-run")
 		self.wok = wok
 
 	def run(self):

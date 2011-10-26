@@ -24,8 +24,8 @@ import os.path
 import re
 
 from Queue import Queue, Empty
-from threading import Thread, Condition
-from multiprocessing import cpu_count
+#from threading import Thread, Condition
+from multiprocessing import cpu_count, Process, Condition
 
 from wok import logger
 from wok.element import DataList
@@ -224,13 +224,13 @@ class WokEngine(Synchronizable):
 
 			for i in range(cpu_count()):
 			#for i in range(1):
-				t = Thread(target = self._logs, name = "wok-engine-logs-%d" % i)
+				t = Process(target = self._logs, name = "wok-engine-logs-%d" % i)
 				self._logs_threads += [t]
 				t.start()
 
 			# Start the join thread
 
-			self._join_thread = Thread(
+			self._join_thread = Process(
 									target = self._join,
 									name = "wok-engine-join")
 			self._join_thread.start()
@@ -413,7 +413,7 @@ class WokEngine(Synchronizable):
 	def start(self, wait = True):
 		self._log.info("Starting engine ...")
 
-		self._run_thread = Thread(target = self._run, name = "wok-engine-run")
+		self._run_thread = Process(target = self._run, name = "wok-engine-run")
 		self._run_thread.start()
 
 		if wait:
