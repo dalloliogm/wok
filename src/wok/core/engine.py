@@ -37,7 +37,7 @@ from wok.core.utils.logs import parse_log
 from wok.core.flow.loader import FlowLoader
 from wok.core.instance import Instance, InstanceController
 from wok.core.jobmgr.factory import create_job_manager
-from wok.core.storage.base import StorageContext
+from wok.core.storage.storage import StorageContext
 from wok.core.storage.factory import create_storage
 
 

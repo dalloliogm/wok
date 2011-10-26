@@ -22,7 +22,7 @@
 import os
 import struct
 
-from wok.core.portio.base import PortData, DataReader, DataWriter
+from wok.core.portio.portio import PortData, DataReader, DataWriter
 
 class PathData(PortData):
 

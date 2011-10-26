@@ -30,7 +30,7 @@ import time
 
 from wok import exit_codes
 from wok.core import runstates
-from wok.core.jobmgr.base import JobManager, Job
+from wok.core.jobmgr.jobmgr import JobManager, Job
 
 class McoreJob(Job):
 	def __init__(self, job_id, task):
